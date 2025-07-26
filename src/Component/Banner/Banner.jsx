@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import placeholderImage from "../../assets/imagePlaceholder.png";
 import { getRandomValue } from "../../utils";
 import axios from "axios";
@@ -6,6 +6,7 @@ import axios from "axios";
 function Banner(){
     const [BannerImage, setBannerImage] = useState(placeholderImage);
     const [movieName, setMovieName]  = useState("");
+    const intervalRef = useRef(null); //keeping a track of intervals
 
     const fetchMovieData = async () => {
 
@@ -29,8 +30,42 @@ function Banner(){
         }
     }
 
+    //starting a time interval for carousel
+    const startInterval = () =>{
+        if (!intervalRef.current){
+            intervalRef.current = setInterval(()=>{
+                fetchMovieData();
+            },4500);
+        }
+    };
+
+    // stopping a time interval for carousel
+    const stopInterval = () => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+        }
+    };
+
     useEffect(() =>{
+        //loading first image immediately
         fetchMovieData();
+        startInterval();
+
+        const handleVisibilityChange = ()=>{
+            if (document.visibilityState === "visible"){
+                startInterval();
+            }else{
+                stopInterval();
+            }
+        }
+
+        document.addEventListener("visibilityChange", handleVisibilityChange);
+
+        return () => {
+            stopInterval();
+            document.removeEventListener("visibilitychange", handleVisibilityChange);
+        }
     },[]);
     
     return (

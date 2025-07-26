@@ -7,7 +7,7 @@ function navbar(){
 
     const {theme, toggleTheme} = useContext(ThemeContext);
     const backGroundColorClass = (theme === "☀︎")? "bg-white" : "bg-black";
-    const boxBackgroundColorClass = (theme === "☀︎")? "bg-black" : "bg-white";
+    const boxBackgroundColorClass = (theme === "☀︎")? "bg-black" : "bg-gray-400";
     const boxTextColor = (theme === "☀︎") ? "text-white" : "text-black";
     
 

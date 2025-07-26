@@ -1,10 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Spinner from "../Common/Spinner";
 import axios from "axios";
 import MovieCard from "../MovieCard/MovieCard";
 import Pagination from "../Pagination/Pagination";
+import { ThemeContext } from "../../App";
 
 function Movies({watchList, addMovieInWatchlist, removeMovieFromWatchlist}){
+
+    const {theme, toggleTheme} = useContext(ThemeContext);
+    const boxTextColor = (theme === "☀︎") ? "text-black" : "text-gray-300";
 
     const [MoviesData, setMoviesData]= useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +33,7 @@ function Movies({watchList, addMovieInWatchlist, removeMovieFromWatchlist}){
     },[PageNumber])
 
     return <div className="my-[5vh]">
-        <h2 className="mx-[35%] text-center text-2xl font-extrabold bg-red-400 p-1 text-black shadow-2xl rounded-xl w-[30%]"> Trending Movies </h2>
+        <h2 className={`mx-[35%] text-center text-2xl font-extrabold bg-red-400 p-1 ${boxTextColor} shadow-2xl rounded-xl w-[30%]`}> Trending Movies </h2>
         
         <div className="">
             {

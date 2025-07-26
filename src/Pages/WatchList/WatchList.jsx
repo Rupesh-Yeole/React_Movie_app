@@ -7,7 +7,7 @@ function WatchList({watchList = [],removeMovieFromWatchlist}){
 
     const {theme, toggleTheme} = useContext(ThemeContext);
     const backGroundColorClass = (theme === "☀︎")? "bg-white" : "bg-black";
-    const textColorClass = (theme === "☀︎") ? "text-black" : "text-white";
+    const textColorClass = (theme === "☀︎") ? "text-black" : "text-gray-200";
 
     const [watchListMoviesInDisplay, setWatchListMoviesInDisplay]=useState([...watchList]);
 
@@ -44,7 +44,7 @@ function WatchList({watchList = [],removeMovieFromWatchlist}){
             {
                 genreArray.map((genre)=>{
                     return <div>
-                        <div className="bg-red-400 text-white font-bold rounded-lg p-2 h-[30px] w-[100px] flex justify-center items-center shadow-md">{genre}</div>
+                        <div className={`bg-red-400 ${textColorClass} font-bold rounded-lg p-2 h-[30px] w-[100px] flex justify-center items-center shadow-md`}>{genre}</div>
                         
                     </div>
                 })
