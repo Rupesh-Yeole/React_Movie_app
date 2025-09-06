@@ -1,5 +1,5 @@
 import {useState,useEffect} from "react";
-import genreIdMapping from "../../Configuration/GenreIdMapping.Js";
+import genreIdMapping from "../../Configuration/GenreIdMapping.js";
 import {useContext} from "react";
 import { ThemeContext } from "../../App";
 
