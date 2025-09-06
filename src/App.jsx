@@ -1,6 +1,6 @@
 import './App.css'
 import {BrowserRouter, Routes, Route} from "react-router-dom"; 
-import Home from "./Pages/Home/home";
+import Home from "./Pages/Home/Home";
 import WatchList from "./Pages/WatchList/WatchList";
 import Navbar from "./Component/Navbar/Navbar";
 import { createContext, useEffect, useState } from 'react';
