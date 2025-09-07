@@ -69,7 +69,7 @@ function Banner(){
     },[]);
     
     return (
-        <div className="mx-auto w-[60%] h-[70vh] rounded-lg bg-cover bg-center flex justify-center items-end transition transition-transform duration-300 hover:scale-102" 
+        <div className="mx-auto md:w-[70%] md:h-[70vh] w-[25rem] h-[15rem] rounded-lg bg-cover bg-center flex justify-center items-end transition-transform duration-300 hover:scale-[1.02]" 
         style={{backgroundImage:`url(${BannerImage})`}}>
 
             <div className="font-xl font-bold p-2 text-white bg-black opacity-70 rounded-lg">
