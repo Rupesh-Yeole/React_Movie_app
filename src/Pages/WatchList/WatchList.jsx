@@ -40,13 +40,12 @@ function WatchList({watchList = [],removeMovieFromWatchlist}){
             <h2 className={`text-2xl bg-yellow-500 p-1 ${textColorClass} shadow-md font-extrabold w-[30%] text-center rounded-lg`}>WatchList</h2>
         </div>
 
-        <div className="my-5 flex justify-center gap-3 cursor-pointer">
+        <div className="my-5 flex flex-wrap items-center justify-center gap-3 cursor-pointer">
             {
                 genreArray.map((genre)=>{
-                    return <div>
-                        <div className={`bg-red-400 ${textColorClass} font-bold rounded-lg p-2 h-[30px] w-[100px] flex justify-center items-center shadow-md`}>{genre}</div>
+                    return <div className={`bg-red-400 ${textColorClass} font-bold rounded-lg px-4 py-2 min-h-[30px] w-[30vw] md:w-[110px] flex justify-center items-center md:flex-nowrap shadow-md text-sm md:text-base`}>{genre}</div>
                         
-                    </div>
+                    
                 })
             }
         </div>
@@ -55,55 +54,47 @@ function WatchList({watchList = [],removeMovieFromWatchlist}){
             <input onChange={onMovieFilter} type="text" placeholder="Search Movies" className={`h-[6vh] w-[40%] border text-center rounded-xl`}></input>
         </div>
         
-        <div className={`my-[7vh] border-3 border-yellow-300 ${textColorClass} rounded-2xl`}>
-            <table>
-                <thead className={`text-center text-black bg-yellow-300 shadow-md rounded-lg`}>
-                    <tr>
-                        <th className="w-[50vw] rounded-tl-lg">Movie Name</th>
-                        <th className="w-[10vw]">Rating</th>
-                        <th className="w-[15vw]">Popularity</th>
-                        <th className="w-[20vw]">Genere</th>
-                        <th className="w-[5vw] rounded-tr-lg"></th>
-                    </tr>
+        <div className="my-[7vh] border-3 border-yellow-300 rounded-2xl overflow-x-auto">
+            <table className="min-w-full text-sm md:text-base">
+                <thead className="text-center text-black bg-yellow-300 shadow-md rounded-lg">
+                <tr>
+                    <th className="w-[50vw] md:w-[30%] rounded-tl-lg">Movie Name</th>
+                    <th className="w-[20vw] md:w-[10%]">Rating</th>
+                    <th className="w-[25vw] md:w-[15%]">Popularity</th>
+                    <th className="w-[30vw] md:w-[20%]">Genre</th>
+                    <th className="w-[10vw] md:w-[5%] rounded-tr-lg"></th>
+                </tr>
                 </thead>
-
                 <tbody>
-                {
-                    watchListMoviesInDisplay.map((movie) =>{
-                        return <tr>
-                            <td className="py-[8px] ">
-                                <div className="mx-[10%] flex justify-center items-end h-[20vh] w-[80%] rounded-lg p-1 bg-cover bg-center" 
-                                        style=  {{backgroundImage:`url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`}}>
-
-                                    <div className="bg-black opacity-85 p-2 rounded-lg text-sm text-white font-bold">
-                                        {movie.title} 
-                                    </div>
-                                </div> 
-                            </td>
-
-                            <td className="text-center font-bold py-[10px]">
-                                {movie.vote_average}
-                            </td>
-
-                            <td className="text-center font-bold py-[10px]">
-                                {movie.popularity}
-                            </td>
-
-                            <td className="text-center font-bold py-[10px]">
-                                {genreIdMapping[movie.genre_ids[0]]}
-                            </td>
-
-                            <td>
-                                <div onClick={()=>removeMovieFromWatchlist(movie)} className="bg-black text-white h-[80%] w-[70%] flex justify-center items-center rounded-xl p-0.5 cursor-pointer">
-                                        🗑️
-                                </div>
-                            </td>
-                        </tr>
-                    })
-                }
+                {watchListMoviesInDisplay.map((movie) => (
+                    <tr key={movie.id}>
+                    <td className="py-[8px]">
+                        <div
+                        className="mx-auto flex justify-center items-end h-[20vh] w-[80%] rounded-lg p-1 bg-cover bg-center"
+                        style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})` }}
+                        >
+                        <div className="bg-black opacity-85 p-2 rounded-lg text-xs md:text-sm text-white font-bold">
+                            {movie.title}
+                        </div>
+                        </div>
+                    </td>
+                    <td className="text-center font-bold py-[10px]">{movie.vote_average}</td>
+                    <td className="text-center font-bold py-[10px]">{movie.popularity}</td>
+                    <td className="text-center font-bold py-[10px]">{genreIdMapping[movie.genre_ids[0]]}</td>
+                    <td className="text-center">
+                        <div
+                        onClick={() => removeMovieFromWatchlist(movie)}
+                        className="bg-black text-white h-[80%] w-[70%] flex justify-center items-center rounded-xl p-1 cursor-pointer"
+                        >
+                        🗑️
+                        </div>
+                    </td>
+                    </tr>
+                ))}
                 </tbody>
             </table>
         </div>
+
     </div>
 }
 
