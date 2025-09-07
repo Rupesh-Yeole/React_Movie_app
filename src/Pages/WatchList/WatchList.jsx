@@ -65,7 +65,7 @@ function WatchList({watchList = [],removeMovieFromWatchlist}){
         </div>
 
         <div className="my-[5vh] flex justify-center">
-            <input onChange={onMovieFilter} type="text" placeholder="Search Movies" className={`max-h-[6vh] w-[40%] border text-center rounded-xl`}></input>
+            <input onChange={onMovieFilter} type="text" placeholder="Search Movies" className={`h-[2vh] md:h-[6vh]  w-[40%] border text-center rounded-xl`}></input>
         </div>
         
         <div className="my-[7vh] border-3 border-yellow-300 rounded-2xl overflow-x-auto">
